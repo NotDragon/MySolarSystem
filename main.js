@@ -332,8 +332,6 @@ function moveCamera(instant = false) {
 			moveCamera();
 	}
 
-	console.log(currentPlanet);
-
 	if(currentStage === 0) {
 		document.querySelector('#prevButton').style.opacity = 0.3;
 		document.querySelector('#prevButton').disabled = true;
@@ -504,7 +502,7 @@ function loadScene() {
 		progressBar.style.width = (loaded / total * 100) + '%';
 	};
 
-	const sun_light = new THREE.PointLight(0xffffff, 3, 5000);
+	const sun_light = new THREE.PointLight(0xffffff, 2, 7000);
 	sun_light.position.set(0, 10, 0);
 	// new OrbitControls(camera, renderer.domElement);
 
@@ -563,7 +561,6 @@ function loadScene() {
 	} );
 
 	const uranus = loadPlanet('Uranus', 5);
-	console.log(uranus)
 	uranus.position.y = 10;
 	uranus.position.x = 2957;
 	setCameraData('Uranus', 2957, 10, 43);
