@@ -422,11 +422,11 @@ function loadUI() {
 	}
 
 	let marsText = addElement('div', '', body, 'marsText', 'text');
-	addElement('h1', 'Welcome To My Solar System5', marsText);
-	addElement('p', 'By Michalis Chatzittofi', marsText);
+	addElement('h1', 'Inertia', marsText);
+	addElement('p', 'By far, one of my most ambitious projects, code named "Inertia", is my very own programming language. It is statically typed, but supports dynamic variables. It is also compiled, and can compile down to c++, which is the language it is written in. Inertia aims to be very versatile and has no specific use', marsText);
 	marsText.onclick = () => {
 		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/robo.html');
+		window.location.replace('/pages/inertia.html');
 	}
 
 	let jupiterText = addElement('div', '', body, 'jupiterText', 'text');
@@ -657,7 +657,7 @@ function loadScene() {
 	if(localStorage.getItem('currentStage')) {
 		currentStage = parseInt(localStorage.getItem('currentStage'));
 		moveCamera(true);
-	}else {
+	} else {
 		moveCamera();
 	}
 
