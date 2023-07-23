@@ -126,6 +126,18 @@ let planetCameraData = {
 			z: 0
 		}
 	},
+	"PlanetIX": {
+		position: {
+			x: 0,
+			y: 0,
+			z: 0
+		},
+		rotation: {
+			x: 0,
+			y: 0,
+			z: 0
+		}
+	},
 };
 let newCameraData = {
 	position: {
@@ -327,6 +339,9 @@ function moveCamera(instant = false) {
 		case 9:
 			currentPlanet = 'Neptune';
 			break;
+		case 10:
+			currentPlanet = 'PlanetIX';
+			break;
 		default:
 			currentStage = 0;
 			moveCamera();
@@ -340,7 +355,7 @@ function moveCamera(instant = false) {
 		document.querySelector('#prevButton').style.opacity = 1;
 		document.querySelector('#prevButton').removeAttribute('disabled');
 	}
-	if(currentStage === 9) {
+	if(currentStage === 10) {
 		document.querySelector('#nextButton').style.opacity = 0.3;
 		document.querySelector('#nextButton').disabled = true;
 	}
@@ -407,34 +422,30 @@ function loadUI() {
 
 	let earthText = addElement('div', '', body, 'earthText', 'text');
 	addElement('h1', 'STEM', earthText);
-	addElement('p', 'Over my time at StemFreak, I became more, and more interested in STEM. I have researched many topics in depth, and conducted many surveys. I also have gained a lot of experience with data analysis, using many tools like python, and pspp', earthText);
+	addElement('p', 'Over my time at <a href="https://www.stemfreak.com/">StemFreak</a>, I became more, and more interested in STEM. I have researched many topics in depth, and conducted many surveys. I also have gained a lot of experience with data analysis, using many tools like python, and pspp', earthText);
 	earthText.onclick = () => {
 		localStorage.setItem('currentStage', currentStage);
 		window.location.replace('/pages/stem.html');
 	}
 
 	let moonText = addElement('div', '', body, 'moonText', 'text');
-	addElement('h1', 'Welcome To My Solar System4', moonText);
-	addElement('p', 'By Michalis Chatzittofi', moonText);
-	moonText.onclick = () => {
-		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/robo.html');
-	}
+	addElement('h1', 'Teacher Assistant', moonText);
+	addElement('p', '2022, was my first time as a teacher assistant. During that summer school at <a href="https://www.stemfreak.com/">StemFreak</a>, I was entrusted with the role of teacher assistant. Along with my mentor, I had the opportunity to teach STEM and C++ to other students. ', moonText);
 
 	let marsText = addElement('div', '', body, 'marsText', 'text');
 	addElement('h1', 'Inertia', marsText);
-	addElement('p', 'By far, one of my most ambitious projects, code named "Inertia", is my very own programming language. It is statically typed, but supports dynamic variables. It is also compiled, and can compile down to c++, which is the language it is written in. Inertia aims to be very versatile and has no specific use', marsText);
+	addElement('p', 'By far, one of my most ambitious projects, code named "Inertia", is my very own programming language. It is statically typed, but supports dynamic variables. It is also compiled, and can compile down to C++, which is the language it is written in. Inertia aims to be very versatile and has no specific use', marsText);
 	marsText.onclick = () => {
 		localStorage.setItem('currentStage', currentStage);
 		window.location.replace('/pages/inertia.html');
 	}
 
 	let jupiterText = addElement('div', '', body, 'jupiterText', 'text');
-	addElement('h1', 'Welcome To My Solar System6', jupiterText);
-	addElement('p', 'By Michalis Chatzittofi', jupiterText);
+	addElement('h1', 'Endure', jupiterText);
+	addElement('p', 'Endure, is one of my biggest projects. It is a third person, top-down, survival, adventure game, written in C++ (no engine). This project allowed me to experiment with things that I previously was not comfortable with, such as animation, level design and graphics', jupiterText);
 	jupiterText.onclick = () => {
 		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/robo.html');
+		window.location.replace('/pages/vg.html');
 	}
 
 	let saturnText = addElement('div', '', body, 'saturnText', 'text');
@@ -454,11 +465,11 @@ function loadUI() {
 	}
 
 	let neptuneText = addElement('div', '', body, 'neptuneText', 'text');
-	addElement('h1', 'Welcome To My Solar System9', neptuneText);
-	addElement('p', 'By Michalis Chatzittofi', neptuneText);
+	addElement('h1', 'This Portfolio', neptuneText);
+	addElement('p', 'Another big project, I undertook, is this portfolio. It is written in vanilla JS, HTML and CSS. ', neptuneText);
 	neptuneText.onclick = () => {
 		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/robo.html');
+		window.location.replace('/pages/Portfolio.html');
 	}
 
 	displayText();
@@ -570,6 +581,19 @@ function loadScene() {
 	neptune.position.x = 4493;
 	setCameraData('Neptune', 4493, 10, 43);
 
+	const planetIXGeometry = new THREE.MeshBasicMaterial({
+		color: 0xaaaaaa,
+		wireframe: true
+	});
+	const planetIX= new THREE.Mesh(
+		new THREE.SphereGeometry(6, 25, 25),
+		planetIXGeometry
+	);
+
+	planetIX.position.y = 10;
+	planetIX.position.x = 5493;
+	setCameraData('PlanetIX', 5493, 10, 30);
+
 	scene.add(
 		sun,
 		mercury,
@@ -580,6 +604,7 @@ function loadScene() {
 		jupiter,
 		uranus,
 		neptune,
+		planetIX,
 		sun_light
 	);
 
@@ -597,6 +622,10 @@ function loadScene() {
 			saturn.rotation.y += 0.03;
 		uranus.rotation.y += 0.0093;
 		neptune.rotation.y += 0.0097;
+
+		planetIX.rotation.y += 0.0045;
+		planetIX.rotation.x += 0.003;
+		planetIX.rotation.z += 0.0045;
 
 		if(camera.position.x > newCameraData.position.x) {
 			camera.position.x -= newCameraData.change.x;
