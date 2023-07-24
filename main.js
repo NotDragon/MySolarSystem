@@ -581,13 +581,12 @@ function loadScene() {
 	neptune.position.x = 4493;
 	setCameraData('Neptune', 4493, 10, 43);
 
-	const planetIXGeometry = new THREE.MeshBasicMaterial({
-		color: 0xaaaaaa,
-		wireframe: true
-	});
 	const planetIX= new THREE.Mesh(
 		new THREE.SphereGeometry(6, 25, 25),
-		planetIXGeometry
+		new THREE.MeshBasicMaterial({
+			color: 0xaaaaaa,
+			wireframe: true
+		})
 	);
 
 	planetIX.position.y = 10;
