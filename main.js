@@ -449,27 +449,27 @@ function loadUI() {
 	}
 
 	let saturnText = addElement('div', '', body, 'saturnText', 'text');
-	addElement('h1', 'Welcome To My Solar System7', saturnText);
-	addElement('p', 'By Michalis Chatzittofi', saturnText);
+	addElement('h1', 'Astrotourism Project', saturnText);
+	addElement('p', 'Astroturism is a project, funded by the Research and Innovation Foundation and funded by the EU and the Government of the Republic of Cyprus. It aims to utilize, Cyprus\' clear skies, and ideal geography, inorder to promote and improve astroturism, in 36 months.', saturnText);
 	saturnText.onclick = () => {
 		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/robo.html');
+		window.location.replace('/pages/astrotourism.html');
 	}
 
 	let uranusText = addElement('div', '', body, 'uranusText', 'text');
-	addElement('h1', 'Welcome To My Solar System8', uranusText);
-	addElement('p', 'By Michalis Chatzittofi', uranusText);
+	addElement('h1', 'This Portfolio', uranusText);
+	addElement('p', 'Another big project, I undertook, is this portfolio. It is written in vanilla JS, HTML and CSS.', uranusText);
 	uranusText.onclick = () => {
 		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/robo.html');
+		window.location.replace('/pages/portfolio.html');
 	}
 
 	let neptuneText = addElement('div', '', body, 'neptuneText', 'text');
-	addElement('h1', 'This Portfolio', neptuneText);
-	addElement('p', 'Another big project, I undertook, is this portfolio. It is written in vanilla JS, HTML and CSS. ', neptuneText);
+	addElement('h1', 'My Computer!', neptuneText);
+	addElement('p', '', neptuneText);
 	neptuneText.onclick = () => {
 		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/Portfolio.html');
+		window.location.replace('/pages/computer.html');
 	}
 
 	displayText();
@@ -517,7 +517,7 @@ function loadScene() {
 	sun_light.position.set(0, 10, 0);
 	// new OrbitControls(camera, renderer.domElement);
 
-	// Array(5000).fill().forEach(addStar);
+	Array(5000).fill().forEach(addStar);
 
 	const sun = loadPlanet('Sun', 20, 50, 50, true);
 	sun.position.y = 10;
