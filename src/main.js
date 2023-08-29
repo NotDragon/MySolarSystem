@@ -222,12 +222,13 @@ function loadPlanet(name, radius, widthSegment = 50, heightSegment = 50, basic =
 	);
 }
 
-function addElement(type, content, parent = document.querySelector('#main'), id = '', cssClass = '') {
+function addElement(type, content, parent = document.querySelector('#main'), id = '', cssClass = ['']) {
 	let element = document.createElement(type);
 	element.innerHTML = content;
 
-	if(cssClass)
-		element.classList.add(cssClass);
+	if(cssClass[0])
+		for(let i of cssClass)
+			element.classList.add(i);
 	if(id)
 		element.id = id;
 	parent.appendChild(element);
@@ -403,46 +404,73 @@ function loadUI() {
 	body.id = 'main';
 	document.body.appendChild(body);
 
-	let introText = addElement('div', '', body, 'introText', 'panel');
+	let introText = addElement('div', '', body, 'introText', ['panel', 'underPlanet']);
 	addElement('h1', 'Welcome To My Solar System', introText);
 	addElement('p', 'By Michalis Chatzittofi', introText);
 
-	let mercuryText = addElement('div', '', body, 'mercuryText', 'panel');
+	let mercuryText = addElement('div', '', body, 'mercuryText', ['panel', 'underPlanet']);
 	addElement('h1', 'About me', mercuryText);
 	addElement('p', 'My name is Michalis Chatzittofi. I am a 14 year old student at the American Academy of Nicosia, and I have a passion for creating software. I also enjoy working with hardware, more specifically electronics. This lead me to the educational center <a href="https://www.stemfreak.com/">StemFreak</a>, where I discovered my passion about STEM, and made my dream of learning how to code come true', mercuryText);
-	mercuryText.onclick = () => {
-		displayText(true);
-	}
+	// mercuryText.onclick = () => {
+	// 	displayText(true);
+	// }
 
 	let mercuryTextDetail = addElement('div', '', body, 'mercuryTextDetail');
 
-	let venusText = addElement('div', '', body, 'venusText', 'panel');
+	let venusText = addElement('div', '', body, 'venusText', ['panel', 'underPlanet']);
 	addElement('h1', 'Robo', venusText);
-	addElement('p', 'This year, I got an internship at <a href="robo.com.cy">Robo.com.cy</a>. There I expanded my expertise, and furthered my understanding of electronics. My inter-ship also gave me the opportunity to participate in some of the largest event in Cyprus. An opportunity that I latched on. Some of this events include:<br> <a href="https://reflectfest.com/">Reflect Fest. 2022</a><br> <a href="https://robotex.org.cy/">Robotex 2023</a><br> <a href="http://www.makerspace.onek.org.cy/makers-fair-2023">Makers Fair</a><br> ect', venusText);
+	addElement('p', 'This year, I got an internship at <a href="https://robo.com.cy">Robo.com.cy</a>. There I expanded my expertise, and furthered my understanding of electronics. My internship also gave me the opportunity to participate in some of the largest event in Cyprus. An opportunity that I latched on. Some of this events include:<br> <a href="https://reflectfest.com/">Reflect Fest. 2022</a><br> <a href="https://robotex.org.cy/">Robotex 2023</a><br> <a href="http://www.makerspace.onek.org.cy/makers-fair-2023">Makers Fair</a><br> ect', venusText);
 	venusText.onclick = () => {
 		displayText(true);
+		newCameraData.position.y -= 5;
 	}
 
 	let venusTextDetail = addElement('div', '', body, 'venusTextDetail');
-	addElement('div', '', venusTextDetail, 'roboHours', 'panel');
-	addElement('h1', 'Events', document.querySelector('#roboHours'));
 
-	let earthText = addElement('div', '', body, 'earthText', 'panel');
+	addElement('div', '', venusTextDetail, 'cscriptContainer', ['panel', 'overPlanet']);
+	addElement('h1', 'CScript (Alpha)', document.querySelector('#cscriptContainer'));
+	addElement('p', 'One of the many projects I under took with <a href="https://robo.com.cy">Robo</a> was CScript. CScript is a program that takes Blocks and translates them to arduino code. It also includes special functions specific for the Tankbot (a robot produced by <a href="https://robo.com.cy">Robo</a>)', document.querySelector('#cscriptContainer'));
+
+	// let cscriptscreenshot = document.createElement('img');
+	// cscriptscreenshot.src = '/img/CScirptScreenshot.png';
+	// cscriptscreenshot.width = window.innerWidth / 3;
+	// venusTextDetail.appendChild(cscriptscreenshot);
+
+	addElement('div', '', venusTextDetail, 'ubidotsContainer', ['panel', 'overPlanet']);
+	addElement('h1', 'Ubidots', document.querySelector('#ubidotsContainer'));
+	addElement('p', '<a href="https://ubidots.com/">Ubidots</a> is a platform that allows you to present and visualise data. It also allows IoT devices, like arduino boards, to communicate with computers. I was responsible for integrating this tool with already existing projects at <a href="https://robo.com.cy">Robo</a>', document.querySelector('#ubidotsContainer'));
+
+	venusTextDetail.onclick = () => {
+		displayText();
+		newCameraData.position.y += 5;
+	}
+
+	let earthText = addElement('div', '', body, 'earthText', ['panel', 'underPlanet']);
 	addElement('h1', 'STEM', earthText);
 	addElement('p', 'Over my time at <a href="https://www.stemfreak.com/">StemFreak</a>, I became more, and more interested in STEM. I have researched many topics in depth, and conducted many surveys. I also have gained a lot of experience with data analysis, using many tools like python, and pspp', earthText);
 	earthText.onclick = () => {
 		displayText(true);
+		newCameraData.position.y -= 5;
 	}
 
 	let earthTextDetail = addElement('div', '', body, 'earthTextDetail');
 
-	let moonText = addElement('div', '', body, 'moonText', 'panel');
+	addElement('div', '', earthTextDetail, 'fiveGContainer', ['panel', 'overPlanet']);
+	addElement('h1', '5G', document.querySelector('#fiveGContainer'));
+	addElement('p', '5G is a very important development in technology. It allowed for faster internet speeds and supported more devices from one access-point. It also made machines like surgical robots, to be more precise and accurate. At <a href="https://www.stemfreak.com/">StemFreak</a>, me and a team of other students put together a survey, and collected responses, x in total. Afterwards we analyzed the data and came to the following conclusions.', document.querySelector('#fiveGContainer'));
+
+	earthTextDetail.onclick = () => {
+		displayText();
+		newCameraData.position.y += 5;
+	}
+
+	let moonText = addElement('div', '', body, 'moonText', ['panel', 'underPlanet']);
 	addElement('h1', 'Teacher Assistant', moonText);
 	addElement('p', '2022, was my first time as a teacher assistant. During that summer school at <a href="https://www.stemfreak.com/">StemFreak</a>, I was entrusted with the role of teacher assistant. Along with my mentor, I had the opportunity to teach STEM and C++ to other students. ', moonText);
 
 	let moonTextDetail = addElement('div', '', body, 'moonTextDetail');
 
-	let marsText = addElement('div', '', body, 'marsText', 'panel');
+	let marsText = addElement('div', '', body, 'marsText', ['panel', 'underPlanet']);
 	addElement('h1', 'Inertia', marsText);
 	addElement('p', 'By far, one of my most ambitious projects, code named "Inertia", is my very own programming language. It is statically typed, but supports dynamic variables. It is also compiled, and can compile down to C++, which is the language it is written in. Inertia aims to be very versatile and has no specific use', marsText);
 	marsText.onclick = () => {
@@ -451,7 +479,7 @@ function loadUI() {
 
 	let marsTextDetail = addElement('div', '', body, 'marsTextDetail');
 
-	let jupiterText = addElement('div', '', body, 'jupiterText', 'panel');
+	let jupiterText = addElement('div', '', body, 'jupiterText', ['panel', 'underPlanet']);
 	addElement('h1', 'Endure', jupiterText);
 	addElement('p', 'Endure, is one of my biggest projects. It is a third person, top-down, survival, adventure game, written in C++ (no engine). This project allowed me to experiment with things that I previously was not comfortable with, such as animation, level design and graphics', jupiterText);
 	jupiterText.onclick = () => {
@@ -460,7 +488,7 @@ function loadUI() {
 
 	let jupiterTextDetail = addElement('div', '', body, 'jupiterTextDetail');
 
-	let saturnText = addElement('div', '', body, 'saturnText', 'panel');
+	let saturnText = addElement('div', '', body, 'saturnText', ['panel', 'underPlanet']);
 	addElement('h1', 'Astrotourism Project', saturnText);
 	addElement('p', 'Astroturism is a project, funded by the Research and Innovation Foundation and funded by the EU and the Government of the Republic of Cyprus. It aims to utilize, Cyprus\' clear skies, and ideal geography, inorder to promote and improve astroturism, in 36 months.', saturnText);
 	saturnText.onclick = () => {
@@ -469,7 +497,7 @@ function loadUI() {
 
 	let saturnTextDetail = addElement('div', '', body, 'saturnTextDetail');
 
-	let uranusText = addElement('div', '', body, 'uranusText', 'panel');
+	let uranusText = addElement('div', '', body, 'uranusText', ['panel', 'underPlanet']);
 	addElement('h1', 'This Portfolio', uranusText);
 	addElement('p', 'Another big project, I undertook, is this portfolio. It is written in vanilla JS, HTML and CSS.', uranusText);
 	uranusText.onclick = () => {
@@ -478,7 +506,7 @@ function loadUI() {
 
 	let uranusTextDetail = addElement('div', '', body, 'uranusTextDetail');
 
-	let neptuneText = addElement('div', '', body, 'neptuneText', 'panel');
+	let neptuneText = addElement('div', '', body, 'neptuneText', ['panel', 'underPlanet']);
 	addElement('h1', 'My Computer!', neptuneText);
 	addElement('p', 'Computers, are one of the most important things, we have created. They are used everywhere! Few people, though, understand how they actually work, and even less are able to build one. I decided to be one of this people, by building a computer from scratch.', neptuneText);
 	neptuneText.onclick = () => {
