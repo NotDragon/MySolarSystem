@@ -464,6 +464,7 @@ function loadUI() {
 		newCameraData.position.y += 5;
 	}
 
+
 	let moonText = addElement('div', '', body, 'moonText', ['panel', 'underPlanet']);
 	addElement('h1', 'Teacher Assistant', moonText);
 	addElement('p', '2022, was my first time as a teacher assistant. During that summer school at <a href="https://www.stemfreak.com/">StemFreak</a>, I was entrusted with the role of teacher assistant. Along with my mentor, I had the opportunity to teach STEM and C++ to other students. ', moonText);
