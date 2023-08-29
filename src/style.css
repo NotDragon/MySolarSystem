@@ -1,5 +1,4 @@
 :root {
-    overflow: hidden;
     font-family: "DejaVu Sans", sans-serif;
     color: #c8c8c8;
 }
@@ -27,12 +26,21 @@ canvas {
     height: 100%;
 }
 
-.panel {
+.overPlanet {
+    position: relative;
+    margin-top: 5%;
+    max-width: 50%;
+}
+
+.underPlanet {
     position: fixed;
-    left: -100px;
     top: 82%;
-    opacity: 0;
+    left: -100px;
+}
+
+.panel {
     transform: translate(-50%, -50%);
+    opacity: 0;
 
     background-color: rgba(17, 17, 17, 0.75);
     border-radius: 5px;
@@ -89,7 +97,7 @@ a:hover {
     transform: scale(1.25) translate(-40%, -40%);
 }
 
-#prevButton{
+#prevButton {
     position: fixed;
     left: 5%;
     top: 50%;
@@ -125,11 +133,21 @@ a:hover {
 
 #muteButton {
     position: fixed;
+    left: 5%;
+    top: 5%;
     aspect-ratio: 1;
     width: 50px;
 
     border: none;
 
     color: white;
-    background: none;
+    background: rgba(17, 17, 17, 0.75);
+
+    transition: all ease-in 150ms;
+}
+
+#muteButton:hover {
+    background: #121212;
+    cursor: pointer;
+    transform: scale(1.25);
 }
