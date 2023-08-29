@@ -27,14 +27,14 @@ canvas {
     height: 100%;
 }
 
-.text {
+.panel {
     position: fixed;
     left: -100px;
     top: 82%;
     opacity: 0;
     transform: translate(-50%, -50%);
 
-    background-color: rgba(10, 10, 10, 0.75);
+    background-color: rgba(17, 17, 17, 0.75);
     border-radius: 5px;
     padding: 10px;
 
@@ -46,7 +46,7 @@ canvas {
     transition: all ease-in 200ms;
 }
 
-.text:hover {
+.panel:hover {
     background-color: rgba(25, 25, 25, 1);
     cursor: pointer;
     transform: scale(1.12) translate(-45%, -45%);
@@ -75,7 +75,7 @@ a:hover {
     transform: translate(-50%, -50%);
     border: none;
     border-radius: 5px;
-    background-color: #010101;
+    background-color: rgba(17, 17, 17, 0.75);
     color: white;
     width: 3vw;
     aspect-ratio: 1;
@@ -96,7 +96,7 @@ a:hover {
     transform: translate(-50%, -50%);
     border: none;
     border-radius: 5px;
-    background-color: #010101;
+    background-color: rgba(17, 17, 17, 0.75);
     color: white;
     width: 3vw;
     aspect-ratio: 1;

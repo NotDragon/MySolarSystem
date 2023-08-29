@@ -176,8 +176,8 @@ camera.position.set(0, 10, 43);
 renderer.setSize(innerWidth, innerHeight);
 document.body.appendChild(renderer.domElement);
 
-renderer.setClearColor(0x010101, 1);
-
+renderer.setClearColor(0x111111, 1);
+renderer.autoClearColor = true	;
 function addStar() {
 	const geometry = new THREE.SphereGeometry(THREE.MathUtils.randFloatSpread(8), 24, 24);
 	const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
@@ -191,6 +191,7 @@ function addStar() {
 		y = THREE.MathUtils.randFloat(-6000, 6000);
 
 	star.position.set(x, y, z);
+
 	scene.add(star);
 }
 
@@ -243,65 +244,67 @@ function setCameraData(name, x, y, z, rX = 0, rY = 0, rZ = 0) {
 	planetCameraData[name].rotation.z = rZ;
 }
 
-function displayText() {
+function displayText(detail = false) {
+	document.querySelector('#venusTextDetail').style.display = 'none';
+	document.querySelector('#mercuryTextDetail').style.display = 'none';
+	document.querySelector('#earthTextDetail').style.display = 'none';
+	document.querySelector('#moonTextDetail').style.display = 'none';
+	document.querySelector('#marsTextDetail').style.display = 'none';
+	document.querySelector('#jupiterTextDetail').style.display = 'none';
+	document.querySelector('#saturnTextDetail').style.display = 'none';
+	document.querySelector('#uranusTextDetail').style.display = 'none';
+	document.querySelector('#neptuneTextDetail').style.display = 'none';
+
+	document.querySelector('#introText').style.display = 'none';
+	document.querySelector('#venusText').style.display = 'none';
+	document.querySelector('#mercuryText').style.display = 'none';
+	document.querySelector('#earthText').style.display = 'none';
+	document.querySelector('#moonText').style.display = 'none';
+	document.querySelector('#marsText').style.display = 'none';
+	document.querySelector('#jupiterText').style.display = 'none';
+	document.querySelector('#saturnText').style.display = 'none';
+	document.querySelector('#uranusText').style.display = 'none';
+	document.querySelector('#neptuneText').style.display = 'none';
+
+
 	if(currentStage === 0) {
-		document.querySelector('#introText').style.display = 'block';
-	} else {
-		document.querySelector('#introText').style.display = 'none';
+		document.querySelector(`#introText`).style.display = 'block';
 	}
 
 	if(currentStage === 1) {
-		document.querySelector('#venusText').style.display = 'block';
-	} else {
-		document.querySelector('#venusText').style.display = 'none';
+		document.querySelector(`#mercuryText${detail? 'Detail': ''}`).style.display = 'block';
 	}
 
 	if(currentStage === 2) {
-		document.querySelector('#mercuryText').style.display = 'block';
-	} else {
-		document.querySelector('#mercuryText').style.display = 'none';
+		document.querySelector(`#venusText${detail? 'Detail': ''}`).style.display = 'block';
 	}
 
 	if(currentStage === 3) {
-		document.querySelector('#earthText').style.display = 'block';
-	} else {
-		document.querySelector('#earthText').style.display = 'none';
+		document.querySelector(`#earthText${detail? 'Detail': ''}`).style.display = 'block';
 	}
 
 	if(currentStage === 4) {
-		document.querySelector('#moonText').style.display = 'block';
-	} else {
-		document.querySelector('#moonText').style.display = 'none';
+		document.querySelector(`#moonText${detail? 'Detail': ''}`).style.display = 'block';
 	}
 
 	if(currentStage === 5) {
-		document.querySelector('#marsText').style.display = 'block';
-	} else {
-		document.querySelector('#marsText').style.display = 'none';
+		document.querySelector(`#marsText${detail? 'Detail': ''}`).style.display = 'block';
 	}
 
 	if(currentStage === 6) {
-		document.querySelector('#jupiterText').style.display = 'block';
-	} else {
-		document.querySelector('#jupiterText').style.display = 'none';
+		document.querySelector(`#jupiterText${detail? 'Detail': ''}`).style.display = 'block';
 	}
 
 	if(currentStage === 7) {
-		document.querySelector('#saturnText').style.display = 'block';
-	} else {
-		document.querySelector('#saturnText').style.display = 'none';
+		document.querySelector(`#saturnText${detail? 'Detail': ''}`).style.display = 'block';
 	}
 
 	if(currentStage === 8) {
-		document.querySelector('#uranusText').style.display = 'block';
-	} else {
-		document.querySelector('#uranusText').style.display = 'none';
+		document.querySelector(`#uranusText${detail? 'Detail': ''}`).style.display = 'block';
 	}
 
 	if(currentStage === 9) {
-		document.querySelector('#neptuneText').style.display = 'block';
-	} else {
-		document.querySelector('#neptuneText').style.display = 'none';
+		document.querySelector(`#neptuneText${detail? 'Detail': ''}`).style.display = 'block';
 	}
 }
 
@@ -400,77 +403,89 @@ function loadUI() {
 	body.id = 'main';
 	document.body.appendChild(body);
 
-	let introText = addElement('div', '', body, 'introText', 'text');
+	let introText = addElement('div', '', body, 'introText', 'panel');
 	addElement('h1', 'Welcome To My Solar System', introText);
 	addElement('p', 'By Michalis Chatzittofi', introText);
 
-	let venusText = addElement('div', '', body, 'venusText', 'text');
-	addElement('h1', 'About me', venusText);
-	addElement('p', 'My name is Michalis Chatzittofi. I am a 14 year old student at the American Academy of Nicosia, and I have a passion for creating software. I also enjoy working with hardware, more specifically electronics. This lead me to the educational center <a href="https://www.stemfreak.com/">StemFreak</a>, where I discovered my passion about STEM, and made my dream of learning how to code come true', venusText);
-	venusText.onclick = () => {
-		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/about.html');
-	}
-
-	let mercuryText = addElement('div', '', body, 'mercuryText', 'text');
-	addElement('h1', 'Robo', mercuryText);
-	addElement('p', 'This year, I got an inter-ship at <a href="robo.com.cy">Robo.com.cy</a>. THere I expanded my expertise, and furthered my understanding of electronics. My inter-ship also gave me the opportunity to participate in some of the largest event in Cyprus. An opportunity that I latched on. Some of this events include:<br> <a href="https://reflectfest.com/">Reflect Fest. 2022</a><br> <a href="https://robotex.org.cy/">Robotex 2023</a><br> <a href="http://www.makerspace.onek.org.cy/makers-fair-2023">Makers Fair</a><br> ect', mercuryText);
+	let mercuryText = addElement('div', '', body, 'mercuryText', 'panel');
+	addElement('h1', 'About me', mercuryText);
+	addElement('p', 'My name is Michalis Chatzittofi. I am a 14 year old student at the American Academy of Nicosia, and I have a passion for creating software. I also enjoy working with hardware, more specifically electronics. This lead me to the educational center <a href="https://www.stemfreak.com/">StemFreak</a>, where I discovered my passion about STEM, and made my dream of learning how to code come true', mercuryText);
 	mercuryText.onclick = () => {
-		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/robo.html');
+		displayText(true);
 	}
 
-	let earthText = addElement('div', '', body, 'earthText', 'text');
+	let mercuryTextDetail = addElement('div', '', body, 'mercuryTextDetail');
+
+	let venusText = addElement('div', '', body, 'venusText', 'panel');
+	addElement('h1', 'Robo', venusText);
+	addElement('p', 'This year, I got an internship at <a href="robo.com.cy">Robo.com.cy</a>. There I expanded my expertise, and furthered my understanding of electronics. My inter-ship also gave me the opportunity to participate in some of the largest event in Cyprus. An opportunity that I latched on. Some of this events include:<br> <a href="https://reflectfest.com/">Reflect Fest. 2022</a><br> <a href="https://robotex.org.cy/">Robotex 2023</a><br> <a href="http://www.makerspace.onek.org.cy/makers-fair-2023">Makers Fair</a><br> ect', venusText);
+	venusText.onclick = () => {
+		displayText(true);
+	}
+
+	let venusTextDetail = addElement('div', '', body, 'venusTextDetail');
+	addElement('div', '', venusTextDetail, 'roboHours', 'panel');
+	addElement('h1', 'Events', document.querySelector('#roboHours'));
+
+	let earthText = addElement('div', '', body, 'earthText', 'panel');
 	addElement('h1', 'STEM', earthText);
 	addElement('p', 'Over my time at <a href="https://www.stemfreak.com/">StemFreak</a>, I became more, and more interested in STEM. I have researched many topics in depth, and conducted many surveys. I also have gained a lot of experience with data analysis, using many tools like python, and pspp', earthText);
 	earthText.onclick = () => {
-		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/stem.html');
+		displayText(true);
 	}
 
-	let moonText = addElement('div', '', body, 'moonText', 'text');
+	let earthTextDetail = addElement('div', '', body, 'earthTextDetail');
+
+	let moonText = addElement('div', '', body, 'moonText', 'panel');
 	addElement('h1', 'Teacher Assistant', moonText);
 	addElement('p', '2022, was my first time as a teacher assistant. During that summer school at <a href="https://www.stemfreak.com/">StemFreak</a>, I was entrusted with the role of teacher assistant. Along with my mentor, I had the opportunity to teach STEM and C++ to other students. ', moonText);
 
-	let marsText = addElement('div', '', body, 'marsText', 'text');
+	let moonTextDetail = addElement('div', '', body, 'moonTextDetail');
+
+	let marsText = addElement('div', '', body, 'marsText', 'panel');
 	addElement('h1', 'Inertia', marsText);
 	addElement('p', 'By far, one of my most ambitious projects, code named "Inertia", is my very own programming language. It is statically typed, but supports dynamic variables. It is also compiled, and can compile down to C++, which is the language it is written in. Inertia aims to be very versatile and has no specific use', marsText);
 	marsText.onclick = () => {
-		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/inertia.html');
+		displayText(true);
 	}
 
-	let jupiterText = addElement('div', '', body, 'jupiterText', 'text');
+	let marsTextDetail = addElement('div', '', body, 'marsTextDetail');
+
+	let jupiterText = addElement('div', '', body, 'jupiterText', 'panel');
 	addElement('h1', 'Endure', jupiterText);
 	addElement('p', 'Endure, is one of my biggest projects. It is a third person, top-down, survival, adventure game, written in C++ (no engine). This project allowed me to experiment with things that I previously was not comfortable with, such as animation, level design and graphics', jupiterText);
 	jupiterText.onclick = () => {
-		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/vg.html');
+		displayText(true);
 	}
 
-	let saturnText = addElement('div', '', body, 'saturnText', 'text');
+	let jupiterTextDetail = addElement('div', '', body, 'jupiterTextDetail');
+
+	let saturnText = addElement('div', '', body, 'saturnText', 'panel');
 	addElement('h1', 'Astrotourism Project', saturnText);
 	addElement('p', 'Astroturism is a project, funded by the Research and Innovation Foundation and funded by the EU and the Government of the Republic of Cyprus. It aims to utilize, Cyprus\' clear skies, and ideal geography, inorder to promote and improve astroturism, in 36 months.', saturnText);
 	saturnText.onclick = () => {
-		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/astrotourism.html');
+		displayText(true);
 	}
 
-	let uranusText = addElement('div', '', body, 'uranusText', 'text');
+	let saturnTextDetail = addElement('div', '', body, 'saturnTextDetail');
+
+	let uranusText = addElement('div', '', body, 'uranusText', 'panel');
 	addElement('h1', 'This Portfolio', uranusText);
 	addElement('p', 'Another big project, I undertook, is this portfolio. It is written in vanilla JS, HTML and CSS.', uranusText);
 	uranusText.onclick = () => {
-		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/portfolio.html');
+		displayText(true);
 	}
 
-	let neptuneText = addElement('div', '', body, 'neptuneText', 'text');
+	let uranusTextDetail = addElement('div', '', body, 'uranusTextDetail');
+
+	let neptuneText = addElement('div', '', body, 'neptuneText', 'panel');
 	addElement('h1', 'My Computer!', neptuneText);
-	addElement('p', '', neptuneText);
+	addElement('p', 'Computers, are one of the most important things, we have created. They are used everywhere! Few people, though, understand how they actually work, and even less are able to build one. I decided to be one of this people, by building a computer from scratch.', neptuneText);
 	neptuneText.onclick = () => {
-		localStorage.setItem('currentStage', currentStage);
-		window.location.replace('/pages/computer.html');
+		displayText(true);
 	}
+
+	let neptuneTextDetail = addElement('div', '', body, 'neptuneTextDetail');
 
 	displayText();
 	let prevButton = addElement('button', '🡐', body, 'prevButton');
@@ -517,7 +532,7 @@ function loadScene() {
 	sun_light.position.set(0, 10, 0);
 	// new OrbitControls(camera, renderer.domElement);
 
-	Array(5000).fill().forEach(addStar);
+	// Array(5000).fill().forEach(addStar);
 
 	const sun = loadPlanet('Sun', 20, 50, 50, true);
 	sun.position.y = 10;
@@ -564,6 +579,11 @@ function loadScene() {
 
 		setCameraData('Saturn', 1482, 10, 25);
 
+		if(localStorage.getItem('currentStage')) {
+			currentStage = parseInt(localStorage.getItem('currentStage'));
+			moveCamera(true);
+		}
+
 		scene.add(saturn);
 	}, undefined, function (error) {
 
@@ -581,18 +601,6 @@ function loadScene() {
 	neptune.position.x = 4493;
 	setCameraData('Neptune', 4493, 10, 43);
 
-	const planetIX= new THREE.Mesh(
-		new THREE.SphereGeometry(6, 25, 25),
-		new THREE.MeshBasicMaterial({
-			color: 0xaaaaaa,
-			wireframe: true
-		})
-	);
-
-	planetIX.position.y = 10;
-	planetIX.position.x = 5493;
-	setCameraData('PlanetIX', 5493, 10, 30);
-
 	scene.add(
 		sun,
 		mercury,
@@ -603,7 +611,6 @@ function loadScene() {
 		jupiter,
 		uranus,
 		neptune,
-		planetIX,
 		sun_light
 	);
 
@@ -621,10 +628,6 @@ function loadScene() {
 			saturn.rotation.y += 0.03;
 		uranus.rotation.y += 0.0093;
 		neptune.rotation.y += 0.0097;
-
-		planetIX.rotation.y += 0.0045;
-		planetIX.rotation.x += 0.003;
-		planetIX.rotation.z += 0.0045;
 
 		if(camera.position.x > newCameraData.position.x) {
 			camera.position.x -= newCameraData.change.x;
@@ -671,7 +674,7 @@ function loadScene() {
 
 		if(has_sound) {
 			document.querySelector('#muteButton').innerHTML = 'Pause Sound';
-			background_music.volume = 0.1;
+			background_music.volume = 0.3;
 			background_music.play().then(() => {
 				console.log('Playback resumed successfully');
 			});
@@ -690,6 +693,7 @@ function loadScene() {
 	}
 
 	animate();
+
 }
 
 window.onbeforeunload = () => {
