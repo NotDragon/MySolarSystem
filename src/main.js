@@ -176,7 +176,7 @@ camera.position.set(0, 10, 43);
 renderer.setSize(innerWidth, innerHeight);
 document.body.appendChild(renderer.domElement);
 
-renderer.setClearColor(0x111111, 1);
+renderer.setClearColor(0x010101, 1);
 renderer.autoClearColor = true	;
 function addStar() {
 	const geometry = new THREE.SphereGeometry(THREE.MathUtils.randFloatSpread(8), 24, 24);
@@ -459,17 +459,21 @@ function loadUI() {
 	addElement('h1', '5G', document.querySelector('#fiveGContainer'));
 	addElement('p', '5G is a very important development in technology. It allowed for faster internet speeds and supported more devices from one access-point. It also made machines like surgical robots, to be more precise and accurate. At <a href="https://www.stemfreak.com/">StemFreak</a>, me and a team of other students put together a survey, and collected responses, x in total. Afterwards we analyzed the data and came to the following conclusions.', document.querySelector('#fiveGContainer'));
 
+	addElement('div', '', earthTextDetail, 'AIContainer', ['panel', 'overPlanet']);
+	addElement('h1', 'AI', document.querySelector('#AIContainer'));
+	addElement('p', '', document.querySelector('#AIContainer'));
+
 	earthTextDetail.onclick = () => {
 		displayText();
 		newCameraData.position.y += 5;
 	}
 
-
 	let moonText = addElement('div', '', body, 'moonText', ['panel', 'underPlanet']);
 	addElement('h1', 'Teacher Assistant', moonText);
-	addElement('p', '2022, was my first time as a teacher assistant. During that summer school at <a href="https://www.stemfreak.com/">StemFreak</a>, I was entrusted with the role of teacher assistant. Along with my mentor, I had the opportunity to teach STEM and C++ to other students. ', moonText);
+	addElement('p', '2022, was my first time as a teacher assistant. During that summer school at <a href="https://www.stemfreak.com/">StemFreak</a>, I was entrusted with the role of teacher assistant. Along with my mentor, I had the opportunity to teach STEM and C++ to other students. This year I was entrusted a class of my own. I was responsible for 6 students. Everyday, I would give them a topic, and they would research that topic. At the end of the day, they would have to present their work, either thought a PowerPoint presentation or anything else they prepared ', moonText);
 
 	let moonTextDetail = addElement('div', '', body, 'moonTextDetail');
+
 
 	let marsText = addElement('div', '', body, 'marsText', ['panel', 'underPlanet']);
 	addElement('h1', 'Inertia', marsText);
@@ -484,10 +488,28 @@ function loadUI() {
 	addElement('h1', 'Endure', jupiterText);
 	addElement('p', 'Endure, is one of my biggest projects. It is a third person, top-down, survival, adventure game, written in C++ (no engine). This project allowed me to experiment with things that I previously was not comfortable with, such as animation, level design and graphics', jupiterText);
 	jupiterText.onclick = () => {
+		newCameraData.position.y -= 5;
 		displayText(true);
 	}
 
 	let jupiterTextDetail = addElement('div', '', body, 'jupiterTextDetail');
+
+	addElement('div', '', jupiterTextDetail, 'narrativeContainer', ['panel', 'overPlanet']);
+	addElement('h1', 'Narrative', document.querySelector('#narrativeContainer'));
+	addElement('p', 'The first thing to decide when making a game is what genera it was going to be. Endure is a third person top down, adventure game, where you resume the role of a human in the far future. The lore is heavily inspired by <a href="https://en.wikipedia.org/wiki/The_Fable_of_the_Dragon-Tyrant">The Fable of the Dragon-Tyrant</a>. It goes as following, after a disaster that almost wiped out the human race, a group of people decided to seek refuge in a huge and old tree. Over the years the tree and humans evolved around each-other. But a new mutation caused the tree to require humans inorder to thrive. Since humans needed the tree to be fertile, inorder the farm plants, everyone mutually agreed that people over the age of 50 would be feed to the tree', document.querySelector('#narrativeContainer'));
+
+	addElement('div', '', jupiterTextDetail, 'storyContainer', ['panel', 'overPlanet']);
+	addElement('h1', 'Story', document.querySelector('#storyContainer'));
+	addElement('p', 'The main character is the one that challenged this mentality, that every one had accepted as part of life for generations. He decides to leave the tree and go to the outer world, that now started to heal and all signs of humanity start to fade away. There he has to fight with new species and a new rising civilization that started to replace humans', document.querySelector('#storyContainer'));
+
+	addElement('div', '', jupiterTextDetail, 'internalContainer', ['panel', 'overPlanet']);
+	addElement('h1', 'Internal', document.querySelector('#internalContainer'));
+	addElement('p', 'For this project I used C++ along with a graphics library called <a href="https://www.raylib.com/">RayLib</a>, along with a wrapper that I made for C++, as <a href="https://www.raylib.com/">RayLib</a> was made for C. This wrapper also allowed me to render things in a custom grid and blocks. I also used <a href="https://www.glfw.org/">GLFW</a> for more complex and performance demanding things. During development, I decided that manually making maps with code was needlessly complicated, so I made a tool that would read from a JSON file where maps and their corresponding metadata were saved, and then loaded them.', document.querySelector('#internalContainer'));
+
+	jupiterTextDetail.onclick = () => {
+		newCameraData.position.y += 5;
+		displayText();
+	}
 
 	let saturnText = addElement('div', '', body, 'saturnText', ['panel', 'underPlanet']);
 	addElement('h1', 'Astrotourism Project', saturnText);

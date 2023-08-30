@@ -29,7 +29,8 @@ canvas {
 
 .overPlanet {
     position: relative;
-    margin-top: 5%;
+    margin-top: 10%;
+    margin-bottom: -7%;
     max-width: 50%;
 }
 
@@ -43,7 +44,7 @@ canvas {
     transform: translate(-50%, -50%);
     opacity: 0;
 
-    background-color: rgba(17, 17, 17, 0.75);
+    background-color: rgba(1, 1, 1, 0.75);
     border-radius: 5px;
     padding: 10px;
 
@@ -84,7 +85,7 @@ a:hover {
     transform: translate(-50%, -50%);
     border: none;
     border-radius: 5px;
-    background-color: rgba(17, 17, 17, 0.75);
+    background-color: rgba(1, 1, 1, 0.75);
     color: white;
     width: 3vw;
     aspect-ratio: 1;
@@ -105,7 +106,7 @@ a:hover {
     transform: translate(-50%, -50%);
     border: none;
     border-radius: 5px;
-    background-color: rgba(17, 17, 17, 0.75);
+    background-color: rgba(1, 1, 1, 0.75);
     color: white;
     width: 3vw;
     aspect-ratio: 1;
@@ -142,7 +143,7 @@ a:hover {
     border: none;
 
     color: white;
-    background: rgba(17, 17, 17, 0.75);
+    background: rgba(1, 1, 1, 0.75);
 
     transition: all ease-in 150ms;
 }
